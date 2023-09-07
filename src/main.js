@@ -2,7 +2,11 @@ import Vue from 'vue'
 import App from './App.vue'
 import "./styles/global.less"
 import { router } from "@/router/index"
+import "@/mock"
 import showMessage from "@/utils/showMessage";
+import $http from "@/service"
+Vue.prototype.$http = $http;
+
 Vue.config.productionTip = false
 
 window.showMessage = showMessage;

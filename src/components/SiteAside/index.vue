@@ -61,6 +61,8 @@ export default {
 <style scoped lang="less">
   @import "~@/styles/var.less";
   .site-aside-container {
+    width: 100%;
+    height: 100%;
     padding: 20px 0;
     background: @dark;
   }

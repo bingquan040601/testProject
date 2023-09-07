@@ -2,9 +2,7 @@
   <div class="app-container">
     <Layout>
       <template #left>
-        <div>
-          <SiteAside />
-        </div>
+        <SiteAside />
       </template>
       <template #default>
         <RouterView />
@@ -31,9 +29,7 @@ export default {
 
 <style scoped>
   .app-container {
-    /*width: 250px;*/
-    /*height: 600px;*/
-    border: 2px solid;
-    overflow: hidden;
+    height: 100%;
+    width: 100%;
   }
 </style>

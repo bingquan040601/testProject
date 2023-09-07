@@ -3,7 +3,7 @@
     <header style="background: red">
       <slot name="left"></slot>
     </header>
-    <main style="background: yellow">
+    <main>
       <slot></slot>
     </main>
     <footer style="background: #6b9eee">
