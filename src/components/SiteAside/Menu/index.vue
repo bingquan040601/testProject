@@ -10,7 +10,7 @@
       <div class="icon">
         <Icon :type="item.icon"/>
       </div>
-      <span @click="$sayHello()">{{ item.title }}</span>
+      <span>{{ item.title }}</span>
     </RouterLink>
   </div>
 </template>

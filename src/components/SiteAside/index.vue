@@ -7,7 +7,7 @@
         circle
       />
     </div>
-    <h1 class="title">轻舟已过万重山</h1>
+    <h1 class="title">HuangBingQuan</h1>
 <!--    <p style="font-size: 20px; color: #fff; text-align: center">HuangBingQuan</p>-->
     <Menu/>
     <Contact :contactList="contactList"/>
@@ -65,6 +65,8 @@ export default {
     height: 100%;
     padding: 20px 0;
     background: @dark;
+    overflow: scroll;
+    box-sizing: border-box;
   }
   .avatar {
     display: flex;

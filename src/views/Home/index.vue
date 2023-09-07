@@ -84,6 +84,9 @@ export default {
     quoteGetContainerHeight: { // 拿到闭包函数引用 好做释放
       get() {
         return this.debounce(this.getContainerHeight, 2000);
+      },
+      set() {
+        this.debounce = null;
       }
     }
   },
