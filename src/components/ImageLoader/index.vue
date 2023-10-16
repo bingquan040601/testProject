@@ -1,7 +1,7 @@
 <template>
   <div class="image-loader-container">
     <img v-if="!everythingDone" :src="placeholder" class="placeholder" />
-    {{ duration }}
+<!--    {{ duration }}-->
     <img :style="{ opacity: originOpacity, transition: `${duration}ms` }" @load="handleLoad" :src="src" />
   </div>
 </template>
@@ -43,6 +43,9 @@ export default {
       }, this.duration)
       console.log("原图加载完成")
     }
+  },
+  created() {
+    console.log('123')
   }
 }
 </script>

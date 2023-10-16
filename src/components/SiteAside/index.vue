@@ -1,3 +1,9 @@
+<!--
+ * @Author: HuangBingQuan <17671241237@163.com>
+ * @Date: 2023-09-05 18:52:05
+ * @LastEditTime: 2023-09-29 22:34:40
+ * @FilePath: /mySite/src/components/SiteAside/index.vue
+-->
 <template>
   <div class="site-aside-container">
     <div class="avatar">
@@ -65,8 +71,7 @@ export default {
     height: 100%;
     padding: 20px 0;
     background: @dark;
-    overflow: scroll;
-    box-sizing: border-box;
+    overflow: auto;
   }
   .avatar {
     display: flex;

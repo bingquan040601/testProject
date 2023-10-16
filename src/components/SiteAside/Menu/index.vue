@@ -1,3 +1,9 @@
+<!--
+ * @Author: HuangBingQuan <17671241237@163.com>
+ * @Date: 2023-09-05 18:52:05
+ * @LastEditTime: 2023-10-01 00:23:52
+ * @FilePath: /mySite/src/components/SiteAside/Menu/index.vue
+-->
 <template>
   <div class="menu-container">
     <RouterLink
@@ -33,13 +39,13 @@ export default {
         exact: true
       },
       {
-        name: "About",
+        name: "Blog",
         title: "文章",
         icon: "blog",
         exact: false
       },
       {
-        name: "Blog",
+        name: "About",
         title: "关于我",
         icon: "about",
         exact: true

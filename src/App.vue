@@ -1,3 +1,9 @@
+<!--
+ * @Author: HuangBingQuan <17671241237@163.com>
+ * @Date: 2023-09-05 18:52:05
+ * @LastEditTime: 2023-09-29 22:32:12
+ * @FilePath: /mySite/src/App.vue
+-->
 <template>
   <div class="app-container">
     <Layout>
@@ -7,9 +13,9 @@
       <template #default>
         <RouterView />
       </template>
-      <template #right>
+      <!-- <template #right>
         <p>内容区</p>
-      </template>
+      </template> -->
     </Layout>
   </div>
 </template>

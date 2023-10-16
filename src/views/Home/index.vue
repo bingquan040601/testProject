@@ -1,13 +1,13 @@
 <template>
-  <div class="home-container" ref="container">
+  <div v-loading="isLoading" class="home-container" ref="container" @wheel="handleWheel">
     <ul class="carousel-container" 
       :style="{
         marginTop
       }"
+      @transitionend="handleTransitionend"
     >
-      <li v-for="(item, index) in bannerList" :key="item.id">
-        {{ index }}
-        <CarouseItem />
+      <li v-for="(item) in data" :key="item.id">
+        <CarouseItem :carousel="item"/>
       </li>
     </ul>
     <div class="icon icon-up"
@@ -18,60 +18,87 @@
     </div>
     <div class="icon icon-down" 
       @click="currentIndex++"  
-      v-show="currentIndex < bannerList.length - 1"
+      v-show="currentIndex < data.length - 1"
     >
       <Icon type="arrowDown" />
     </div>
     <ul class="indicator">
       <li 
         :class="{active: currentIndex === index}"
-        v-for="(item, index) in bannerList"
+        v-for="(item, index) in data"
         :key="item.id"
         @click="switchTo(index)"
       ></li>
     </ul>
+    <!-- <Loading v-if="isLoading"/> -->
   </div>
 </template>
 
 <script>
 import CarouseItem from "./CarouseItem.vue";
 import Icon from "@/components/Icon";
+import Loading from "@/components/Loading";
+import fetchData from "../../mixins/fetchData";
+
 export default {
+  mixins: [fetchData([])],
   name: "Home",
   components: {
     CarouseItem,
     Icon,
+    Loading
   },
   data: () => ({
     msg: "Home",
-    bannerList: [],
+    // bannerList: [],
     currentIndex: 0, // 当前现实的是第几张图片
     containerHeight: 0, // 整个容器的高度
+    switching: false, // 是否滚动
+    // isLoading: true
   }),
   mounted() {
-    this.getBanner();
+    // this.getBanner();
     this.getContainerHeight();
     window.addEventListener('resize', this.quoteGetContainerHeight);
   },
   methods: {
-    async getBanner() {
-      const bannerList = await this.$http.bannerServer.getBanner();
-      this.bannerList = bannerList;
+    async fetchData() {
+      return await this.$http.bannerServer.getBanner();
     },
+    // async getBanner() {
+    //   const bannerList = await this.$http.bannerServer.getBanner();
+    //   this.bannerList = bannerList;
+    //   this.isLoading = false;
+    // },
     getContainerHeight() {
       this.containerHeight = this.$refs.container.clientHeight;
     },
     switchTo(index) {
       this.currentIndex = index;
     },
+    handleTransitionend() {
+      this.switching = false;
+    },
     debounce(fn, delay) {
       let timer;
-      return ()=> {
+      return (e)=> {
         clearTimeout(timer)
         timer = null;
         timer = setTimeout(function(){
-          fn.call(this);
+          fn.call(this, e);
         }, delay)
+      }
+    },
+    handleWheel(e) {
+      if(this.switching || e.deltaY <= 5 && e.deltaY >= -5) {
+        return;
+      }
+      if(e.deltaY < -5 && this.currentIndex > 0) {
+        this.switching = true;
+        this.currentIndex--;
+      }else if(e.deltaY > 5 && this.currentIndex < this.data.length - 1) {
+        this.switching = true;
+        this.currentIndex++;
       }
     }
   },
